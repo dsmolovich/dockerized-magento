@@ -14,7 +14,7 @@ KEY="57bf4306ce02639b5924";
 bin/magento setup:install \
     --backend-frontname="admin" \
     --admin-user="dmitry" \
-    --admin-password="b$UyRh&pXu" \
+    --admin-password="b$U_Rh8&p98Xu" \
     --admin-email="dsmolovich@gmail.com" \
     --admin-firstname="Dmitry" \
     --admin-lastname="Smolovich" \
@@ -24,6 +24,25 @@ bin/magento setup:install \
     --db-name="$DB_NAME" \
     --db-user="$DB_USER" \
     --db-password="$DB_PASSWORD" \
-    --db-prefix="" \
+    --db-prefix=""
+
+bin/magento deploy:mode:set develop
+
+bin/magento setup:config:set \
+    --cache-backend=redis \
     --cache-backend-redis-server=redis \
     --cache-backend-redis-db=1
+
+bin/magento setup:config:set \
+    --page-cache-redis-server=redis \
+    --page-cache-redis-db=0
+
+
+bin/magento cache:flush
+bin/magento cache:clean
+composer install
+bin/magento setup:upgrade
+bin/magento setup:di:compile
+bin/magento setup:static-content:deploy
+bin/magento cache:flush
+
