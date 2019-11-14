@@ -1,0 +1,29 @@
+docker-compose down
+docker-compose up -d --build
+docker exec -it web bash
+
+
+bin/magento setup:uninstall --no-interaction
+
+DB_HOST="mysql"
+DB_USER="root";
+DB_PASSWORD="root";
+DB_NAME="magento";
+KEY="57bf4306ce02639b5924";
+
+bin/magento setup:install \
+    --backend-frontname="admin" \
+    --admin-user="dmitry" \
+    --admin-password="b$UyRh&pXu" \
+    --admin-email="dsmolovich@gmail.com" \
+    --admin-firstname="Dmitry" \
+    --admin-lastname="Smolovich" \
+    --key="$KEY" \
+    --session-save="files" \
+    --db-host="$DB_HOST" \
+    --db-name="$DB_NAME" \
+    --db-user="$DB_USER" \
+    --db-password="$DB_PASSWORD" \
+    --db-prefix="" \
+    --cache-backend-redis-server=redis \
+    --cache-backend-redis-db=1

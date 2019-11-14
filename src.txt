@@ -1,0 +1,2 @@
+https://www.magemodule.com/all-things-magento/magento-2-tutorials/redis-for-local-magento-2-development/
+https://devdocs.magento.com/guides/v2.3/config-guide/redis/redis-pg-cache.html
